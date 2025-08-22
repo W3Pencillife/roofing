@@ -99,7 +99,7 @@
           <a class="btn btn-primary fw-semibold text-white px-4 py-2" href="#"
              style="border-radius: 50px; background: linear-gradient(90deg, #3498db, #2c81ba); 
                     box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3); transition: all 0.3s ease;">
-            Get started <i class="bi bi-arrow-right ms-2"></i>
+            Free Quote <i class="bi bi-arrow-right ms-2"></i>
           </a>
         </li>
 

@@ -4,7 +4,7 @@
     <div class="footer-main">
       <!-- Logo and Basic Info -->
       <div class="footer-brand">
-        <img src="{{ asset('images/logo.png') }}" alt="Company Logo" class="footer-logo">
+        <img src="{{ asset($siteLogo) }}" alt="Company Logo" class="footer-logo">
         <p class="footer-tagline">Our company provides superior roofing services to protect your home or business at affordable costs.</p>
       </div>
 

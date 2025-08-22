@@ -3,7 +3,7 @@
   <div class="container">
     <!-- Logo -->
     <a class="navbar-brand" href="#">
-      <img src="{{ asset('images/logo.png') }}" alt="Logo" height="60">
+        <img src="{{ asset($siteLogo) }}" alt="Logo" height="60">
     </a>
 
     <!-- Mobile Toggle -->
@@ -99,7 +99,7 @@
           <a class="btn btn-primary fw-semibold text-white px-4 py-2" href="#"
              style="border-radius: 50px; background: linear-gradient(90deg, #3498db, #2c81ba); 
                     box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3); transition: all 0.3s ease;">
-            Get started <i class="bi bi-arrow-right ms-2"></i>
+            Free Quote <i class="bi bi-arrow-right ms-2"></i>
           </a>
         </li>
 
@@ -115,7 +115,7 @@
   <div class="content text-white">
     <h1 class="fw-bold display-4">Welcome to Roofing Site</h1>
     <p class="lead">We provide the best roofing services with quality and trust.</p>
-    <a href="#" class="cta-primary">Get Started</a>
+    <a href="#" class="cta-primary">Free Quote</a>
   </div>
 </div>
 <!-- ==================== Hero Section End ==================== -->
