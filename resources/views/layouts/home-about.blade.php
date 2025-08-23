@@ -1,36 +1,42 @@
-<!-- About Section -->
+<!-- ==================== About Section ==================== -->
+@php
+    // Fetch the latest record from home_abouts table
+    $homeAbout = \App\Models\HomeAbout::latest()->first();
+@endphp
+
 <section class="compact-about">
-  <div class="about-bg-blur"></div>
-  <div class="about-container">
-    <div class="about-content">
-      <!-- Title -->
-      <h2 class="about-title animate-hidden">About Us</h2>
-      <div class="about-divider"></div>
+    <div class="about-bg-blur"></div>
 
-      <!-- Description -->
-      <p class="about-description" id="about-text">
-        With unmatched expertise and commitment to excellence, we protect Auckland homes one roof at a time. 
-        Our certified professionals deliver durable roofing solutions.
-      </p>
+    <div class="about-container">
+        <div class="about-content">
+            <!-- Title -->
+            <h2 class="about-title animate-hidden">{{ $homeAbout?->title ?? 'About Us' }}</h2>
+            <div class="about-divider"></div>
 
-      <!-- Features -->
-      <div class="about-features">
-        <div class="feature-card">
-          <i class="bi bi-shield-check"></i>
-          <span>15-Year Warranty</span>
+            <!-- Description -->
+            <p class="about-description" id="about-text">
+                {{ $homeAbout?->description ?? 'Default about description...' }}
+            </p>
+
+            <!-- Features -->
+            <div class="about-features">
+                <div class="feature-card">
+                    <i class="bi bi-shield-check"></i>
+                    <span>{{ $homeAbout?->feature_1 ?? 'Feature 1' }}</span>
+                </div>
+                <div class="feature-card">
+                    <i class="bi bi-people"></i>
+                    <span>{{ $homeAbout?->feature_2 ?? 'Feature 2' }}</span>
+                </div>
+                <div class="feature-card">
+                    <i class="bi bi-house-heart"></i>
+                    <span>{{ $homeAbout?->feature_3 ?? 'Feature 3' }}</span>
+                </div>
+            </div>
         </div>
-        <div class="feature-card">
-          <i class="bi bi-people"></i>
-          <span>Local Specialists</span>
-        </div>
-        <div class="feature-card">
-          <i class="bi bi-house-heart"></i>
-          <span>500+ Homes</span>
-        </div>
-      </div>
     </div>
-  </div>
 </section>
+
 
 <!-- Styles -->
 <style>

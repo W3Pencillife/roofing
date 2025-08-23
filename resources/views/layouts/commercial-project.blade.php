@@ -1,46 +1,39 @@
+
+
 <section class="project-section commercial-section" id="commercialProjects">
   <div class="container">
     <div class="row align-items-center">
       <!-- Left Column - Animated Image -->
       <div class="col-lg-6">
         <div class="project-image">
-          <img src="{{ asset('images/commercial-project.png') }}" alt="Commercial Roofing Project" class="img-fluid">
+          <img src="{{ asset($commercialProject?->image ?? 'images/commercial-project.png') }}" 
+               alt="{{ $commercialProject?->title ?? 'Commercial Roofing Project' }}" 
+               class="img-fluid">
         </div>
       </div>
       
       <!-- Right Column - Text Content -->
       <div class="col-lg-6">
         <div class="project-content">
-          <h2 class="project-title">Commercial Projects</h2>
-          <p class="project-description">We deliver high-performance roofing systems for commercial properties, combining durability with cost-effective solutions.</p>
+          <h2 class="project-title">{{ $commercialProject?->title ?? 'Commercial Projects' }}</h2>
+          <p class="project-description">{{ $commercialProject?->description ?? 'Default commercial description...' }}</p>
           
           <ul class="project-features">
-            <li>
-              <span class="feature-icon">✓</span>
-              <span>Industrial-grade roofing materials</span>
-            </li>
-            <li>
-              <span class="feature-icon">✓</span>
-              <span>30+ year warranty options</span>
-            </li>
-            <li>
-              <span class="feature-icon">✓</span>
-              <span>Minimal business disruption</span>
-            </li>
-            <li>
-              <span class="feature-icon">✓</span>
-              <span>Energy-saving solutions</span>
-            </li>
-            <li>
-              <span class="feature-icon">✓</span>
-              <span>Commercial building code compliance</span>
-            </li>
+            @for($i = 1; $i <= 5; $i++)
+              @if($commercialProject?->{'feature_'.$i})
+                <li>
+                  <span class="feature-icon">✓</span>
+                  <span>{{ $commercialProject->{'feature_'.$i} }}</span>
+                </li>
+              @endif
+            @endfor
           </ul>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 
 <style>
 /* Commercial Section Specific Styles */

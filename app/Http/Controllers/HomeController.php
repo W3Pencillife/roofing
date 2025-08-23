@@ -5,17 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Setting;
 use App\Models\QuoteForm;
+use App\Models\HomeAbout;
+use App\Models\CommercialProject;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        // Get the latest setting
         $setting = Setting::latest()->first();
+        $quote = QuoteForm::latest()->first();
+        $homeAbout = HomeAbout::latest()->first();
+        $commercialProject = CommercialProject::latest()->first(); // fetch latest commercial project
 
-        // Get the latest quote, or null if no data
-        $quote = QuoteForm::orderBy('id', 'desc')->first();
-
-        return view('home', compact('setting', 'quote'));
+        return view('home', compact('setting', 'quote', 'homeAbout', 'commercialProject'));
     }
+
 }
