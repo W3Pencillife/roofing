@@ -24,25 +24,31 @@
     
     <!-- Right Column - Form -->
     <div class="col-md-6 form-section">
-      <form class="elegant-contact-form">
+      @if(session('success'))
+          <div class="alert alert-success" id="success-alert">
+              {{ session('success') }}
+          </div>
+      @endif
+      <form class="elegant-contact-form" action="{{ route('quote.send') }}" method="POST">
+        @csrf
         <div class="form-group">
           <label for="name">Full Name</label>
-          <input type="text" id="name" class="form-control" placeholder="John Smith">
+          <input type="text" id="name" name="name" class="form-control" placeholder="John Smith" required>
         </div>
         
         <div class="form-group">
           <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" class="form-control" placeholder="(123) 456-7890">
+          <input type="tel" id="phone" name="phone" class="form-control" placeholder="(123) 456-7890" required>
         </div>
         
         <div class="form-group">
           <label for="email">Email Address</label>
-          <input type="email" id="email" class="form-control" placeholder="john@example.com">
+          <input type="email" id="email" name="email" class="form-control" placeholder="john@example.com" required>
         </div>
         
         <div class="form-group">
           <label for="subject">Subject</label>
-          <select id="subject" class="form-control">
+          <select id="subject" name="subject" class="form-control" required>
             <option value="" disabled selected>Select your inquiry</option>
             <option>New Roof Installation</option>
             <option>Roof Repair</option>
@@ -53,7 +59,7 @@
         
         <div class="form-group">
           <label for="message">Your Message</label>
-          <textarea id="message" class="form-control" rows="4" placeholder="Tell us about your project"></textarea>
+          <textarea id="message" name="message" class="form-control" rows="4" placeholder="Tell us about your project" required></textarea>
         </div>
         
         <button type="submit" class="btn btn-submit">
@@ -245,23 +251,33 @@ select.form-control {
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  const formSection = document.querySelector('.elegant-form');
+    // Form animation observer
+    const formSection = document.querySelector('.elegant-form');
+    if (formSection) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        });
+        observer.observe(formSection);
+    }
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px' // Trigger slightly earlier
-  });
-
-  if (formSection) {
-    observer.observe(formSection);
-  }
+    // Quote success alert auto-hide
+    const alert = document.getElementById('success-alert');
+    if (alert) {
+        setTimeout(() => {
+            alert.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+            alert.style.opacity = '0';
+            alert.style.transform = 'translateY(-20px)'; // slide up effect
+            setTimeout(() => alert.remove(), 500);
+        }, 5000);
+    }
 });
 </script>
 
