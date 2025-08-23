@@ -14,14 +14,17 @@
         <div class="footer-column">
           <h3 class="footer-heading">Services</h3>
           <ul class="footer-links">
-            <li><a href="#">Long Run Roofing</a></li>
-            <li><a href="#">Re-Roofing</a></li>
-            <li><a href="#">Commercial & Industrial Roofing</a></li>
-            <li><a href="#">Commercial Skylight Replacement</a></li>
-            <li><a href="#">New Roof</a></li>
+            @php
+                $categories = \App\Models\Post::select('category', 'slug')->distinct()->get();
+            @endphp
+
+            @foreach($categories as $cat)
+                <li>
+                    <a href="{{ route('services.category', $cat->slug) }}">{{ $cat->category }}</a>
+                </li>
+            @endforeach
           </ul>
-        </div>
-        
+        </div>        
         <!-- Support Column -->
         <div class="footer-column">
           <h3 class="footer-heading">Support</h3>

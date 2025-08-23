@@ -24,6 +24,20 @@
         </li>
 
         <!-- Services Dropdown -->
+        @php
+            // Get all unique categories and their slugs
+            $categories = \App\Models\Post::select('category','slug')->distinct()->get();
+
+            // Separate categories into roofing vs commercial
+            $roofingCategories = $categories->filter(function($cat){
+                return str_contains(strtolower($cat->category), 'roof');
+            });
+
+            $commercialCategories = $categories->filter(function($cat){
+                return !str_contains(strtolower($cat->category), 'roof');
+            });
+        @endphp
+
         <li class="nav-item dropdown mx-2">
           <a class="nav-link dropdown-toggle fw-semibold text-white position-relative" href="#" data-bs-toggle="dropdown" id="servicesDropdown">
             Services
@@ -35,54 +49,49 @@
               style="min-width: 280px; background-color: white; border: none; border-radius: 8px; 
                      box-shadow: 0 10px 30px rgba(0,0,0,0.15); overflow: hidden;">
 
-            <!-- Roofing Services -->
+            <!-- Roofing Services Header -->
             <li class="px-3 pt-3">
               <h6 class="dropdown-header fw-bold mb-1 text-uppercase"
                   style="font-size: 0.75rem; letter-spacing: 1px; color: #3498db;">
                 Roofing Services
               </h6>
             </li>
-            <li>
-              <a class="dropdown-item py-2 px-3 text-dark d-flex align-items-center" href="#">
-                <i class="" style="color: #3498db;"></i> Long Run Roofing
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item py-2 px-3 text-dark d-flex align-items-center" href="#">
-                <i class="" style="color: #3498db;"></i> Re-Roofing
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item py-2 px-3 text-dark d-flex align-items-center" href="#">
-                <i class="" style="color: #3498db;"></i> Roof Replacement
-              </a>
-            </li>
+
+            @foreach($roofingCategories as $index => $cat)
+                <li>
+                    <a class="dropdown-item py-2 px-3 text-dark d-flex align-items-center"
+                       href="{{ route('services.category', $cat->slug) }}">
+                       <i class="" style="color: #3498db;"></i> {{ $cat->category }}
+                    </a>
+                </li>
+                @if($index != $roofingCategories->count() - 1)
+                    <li><hr class="dropdown-divider m-0" style="border-color: #f1f1f1;"></li>
+                @endif
+            @endforeach
 
             <!-- Divider -->
             <li><hr class="dropdown-divider m-0" style="border-color: #f1f1f1;"></li>
 
-            <!-- Commercial Services -->
+            <!-- Commercial Services Header -->
             <li class="px-3 pt-3">
               <h6 class="dropdown-header fw-bold mb-1 text-uppercase"
                   style="font-size: 0.75rem; letter-spacing: 1px; color: #3498db;">
                 Commercial Services
               </h6>
             </li>
-            <li>
-              <a class="dropdown-item py-2 px-3 text-dark d-flex align-items-center" href="#">
-                <i class="" style="color: #3498db;"></i> Commercial & Industrial Roofing
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item py-2 px-3 text-dark d-flex align-items-center" href="#">
-                <i class="" style="color: #3498db;"></i> Commercial Skylight Replacements
-              </a>
-            </li>
-            <li>
-              <a class="dropdown-item py-2 px-3 text-dark d-flex align-items-center" href="#">
-                <i class="" style="color: #3498db;"></i> New Roof
-              </a>
-            </li>
+
+            @foreach($commercialCategories as $index => $cat)
+                <li>
+                    <a class="dropdown-item py-2 px-3 text-dark d-flex align-items-center"
+                       href="{{ route('services.category', $cat->slug) }}">
+                       <i class="" style="color: #3498db;"></i> {{ $cat->category }}
+                    </a>
+                </li>
+                @if($index != $commercialCategories->count() - 1)
+                    <li><hr class="dropdown-divider m-0" style="border-color: #f1f1f1;"></li>
+                @endif
+            @endforeach
+
           </ul>
         </li>
 
@@ -108,7 +117,6 @@
   </div>
 </nav>
 <!-- ==================== Navbar Section End ==================== -->
-
 
 <!-- ==================== Hero Section Start ==================== -->
 <div class="home-hero d-flex align-items-center justify-content-center text-center"
