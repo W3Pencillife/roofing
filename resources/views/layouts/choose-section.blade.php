@@ -1,68 +1,35 @@
+
+@php
+  use App\Models\ChooseSection;
+  $chooseSection = ChooseSection::with('benefits')->first();
+@endphp
+
+@if($chooseSection)
 <!-- Why Choose Us Section -->
 <section class="why-choose-us">
   <div class="container">
     <div class="section-header">
-      <h2 class="section-title">Why Choose <span class="highlight">BD Roofing</span> for Your Next Project?</h2>
+      <h2 class="section-title">
+        {{ $chooseSection->title }} <span class="highlight">{{ $chooseSection->highlight }}</span> for Your Next Project?
+      </h2>
       <div class="divider"></div>
     </div>
     
     <div class="benefits-grid">
-      <!-- Benefit 1 -->
-      <div class="benefit-card">
-        <div class="benefit-icon">
-          <i class="bi bi-award"></i>
+      @foreach($chooseSection->benefits as $benefit)
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="{{ $benefit->icon }}"></i>
+          </div>
+          <h3>{{ $benefit->heading }}</h3>
+          <p>{{ $benefit->description }}</p>
         </div>
-        <h3>Proven Expertise</h3>
-        <p>With years of hands-on experience in the roofing industry, our team brings expertise to each project.</p>
-      </div>
-      
-      <!-- Benefit 2 -->
-      <div class="benefit-card">
-        <div class="benefit-icon">
-          <i class="bi bi-cash-stack"></i>
-        </div>
-        <h3>Transparent Pricing</h3>
-        <p>Free no-obligation estimate, we are transparent about our costs and take an upfront honest approach.</p>
-      </div>
-      
-      <!-- Benefit 3 -->
-      <div class="benefit-card">
-        <div class="benefit-icon">
-          <i class="bi bi-graph-up"></i>
-        </div>
-        <h3>Competitive Value</h3>
-        <p>We strive to offer competitive prices without compromising on the quality of our work.</p>
-      </div>
-      
-      <!-- Benefit 4 -->
-      <div class="benefit-card">
-        <div class="benefit-icon">
-          <i class="bi bi-shield-check"></i>
-        </div>
-        <h3>Quality Craftsmanship</h3>
-        <p>We take pride in delivering top-notch roof services, ensuring durable and high-quality solutions.</p>
-      </div>
-      
-      <!-- Benefit 5 -->
-      <div class="benefit-card">
-        <div class="benefit-icon">
-          <i class="bi bi-chat-dots"></i>
-        </div>
-        <h3>Clear Communication</h3>
-        <p>Excellent service with a clean, safe site at all times, and clear communication throughout.</p>
-      </div>
-      
-      <!-- Benefit 6 -->
-      <div class="benefit-card">
-        <div class="benefit-icon">
-          <i class="bi bi-building-gear"></i>
-        </div>
-        <h3>Comprehensive Services</h3>
-        <p>Whether it's repairs, new installations, or commercial roofing, we offer complete solutions.</p>
-      </div>
+      @endforeach
     </div>
   </div>
 </section>
+@endif
+
 
 <style>
 /* Section Base */
