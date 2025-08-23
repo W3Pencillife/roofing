@@ -7,6 +7,7 @@ use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Models\CommercialProject;
 use App\Models\ResidentialProject;
+use App\Models\SiteSetting;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -30,5 +31,11 @@ class AppServiceProvider extends ServiceProvider
                 // Latest residential project
         $residentialProject = ResidentialProject::latest()->first();
         View::share('residentialProject', $residentialProject);
+
+                // Share $siteSetting with all views
+        View::composer('*', function ($view) {
+            $siteSetting = SiteSetting::first(); // fetch the first settings row
+            $view->with('siteSetting', $siteSetting);
+        });
     }
 }

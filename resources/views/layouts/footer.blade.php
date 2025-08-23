@@ -5,7 +5,7 @@
       <!-- Logo and Basic Info -->
       <div class="footer-brand">
         <img src="{{ asset($siteLogo) }}" alt="Company Logo" class="footer-logo">
-        <p class="footer-tagline">Our company provides superior roofing services to protect your home or business at affordable costs.</p>
+        <p class="footer-tagline">{{ $siteSetting->footer_tagline ?? '' }}</p>
       </div>
 
       <!-- Footer Navigation -->
@@ -35,21 +35,21 @@
         <div class="footer-column">
           <h3 class="footer-heading">Connect Us</h3>
           <div class="social-links">
-            <a href="#" class="social-icon" aria-label="Facebook">
-              <i class="bi bi-facebook"></i>
-            </a>
-            <a href="#" class="social-icon" aria-label="Twitter">
-              <i class="bi bi-twitter-x"></i>
-            </a>
-            <a href="#" class="social-icon" aria-label="Instagram">
-              <i class="bi bi-instagram"></i>
-            </a>
-            <a href="#" class="social-icon" aria-label="YouTube">
-              <i class="bi bi-youtube"></i>
-            </a>
-            <a href="#" class="social-icon" aria-label="LinkedIn">
-              <i class="bi bi-linkedin"></i>
-            </a>
+            @if($siteSetting->facebook)
+              <a href="{{ $siteSetting->facebook }}" class="social-icon" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            @endif
+            @if($siteSetting->twitter)
+              <a href="{{ $siteSetting->twitter }}" class="social-icon" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+            @endif
+            @if($siteSetting->instagram)
+              <a href="{{ $siteSetting->instagram }}" class="social-icon" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            @endif
+            @if($siteSetting->youtube)
+              <a href="{{ $siteSetting->youtube }}" class="social-icon" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+            @endif
+            @if($siteSetting->linkedin)
+              <a href="{{ $siteSetting->linkedin }}" class="social-icon" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            @endif
           </div>
         </div>
       </div>
@@ -57,10 +57,11 @@
 
     <!-- Copyright Section -->
     <div class="copyright-section">
-      <p>© 2024 Copyright All rights reserved by BD Roofing.</p>
+      <p>{{ $siteSetting->copyright_text ?? '© '.date('Y').' All rights reserved by BD Roofing.' }}</p>
     </div>
   </div>
 </footer>
+
 
 <style>
 /* Footer Base */
