@@ -1,24 +1,33 @@
+@php
+  use App\Models\HomeDiscover;
+  $homeDiscover = HomeDiscover::first();
+@endphp
+
+@if($homeDiscover)
 <!-- Discover Section -->
 <section class="compact-discover">
   <div class="discover-bg-blur"></div>
   <div class="discover-container">
     <div class="discover-content">
       <!-- Title -->
-      <h2 class="discover-title animate-hidden">Transform your roof and leave your worries behind.</h2>
+      <h2 class="discover-title animate-hidden">{{ $homeDiscover->title }}</h2>
       <div class="discover-divider"></div>
 
       <!-- Description -->
       <p class="discover-description" id="discover-text">
-        With exceptional customer service, quality craftsmanship, and durable materials, we are  
-        Auckland's premier roofing company. Whether you need a new roof or re-roofing, we  
-        provide high-quality solutions.
+        {{ $homeDiscover->description }}
       </p>
 
-      <!-- Updated Button -->
-      <a href="#" class="cta-primary">Discover More</a>
+      <!-- Button -->
+      <a href="{{ $homeDiscover->button_link }}" class="cta-primary">
+        {{ $homeDiscover->button_text }}
+      </a>
     </div>
   </div>
 </section>
+@endif
+
+
 
 <!-- Styles -->
 <style>
