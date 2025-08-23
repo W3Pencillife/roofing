@@ -111,14 +111,17 @@
 
 
 <!-- ==================== Hero Section Start ==================== -->
-<div class="home-hero d-flex align-items-center justify-content-center text-center">
+<div class="home-hero d-flex align-items-center justify-content-center text-center"
+     style="--hero-bg: url('{{ asset($heroBg) }}');">
   <div class="content text-white">
-    <h1 class="fw-bold display-4">Welcome to Roofing Site</h1>
-    <p class="lead">We provide the best roofing services with quality and trust.</p>
+    <h1 class="fw-bold display-4">{{ $heroTitle }}</h1>
+    <p class="lead">{{ $heroText }}</p>
     <a href="#" class="cta-primary">Free Quote</a>
   </div>
 </div>
+
 <!-- ==================== Hero Section End ==================== -->
+
 
 
 <!-- ==================== Includes ==================== -->
@@ -186,16 +189,18 @@
   }
 
   .home-hero::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: url("{{ asset('images/home.jpeg') }}") no-repeat center center/cover;
-    filter: blur(6px);
-    transform: scale(1.1);
-    animation: zoomInOut 12s infinite alternate ease-in-out;
-    z-index: -1;
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: var(--hero-bg) no-repeat center center/cover;
+      filter: blur(6px);
+      transform: scale(1.1);
+      animation: zoomInOut 12s infinite alternate ease-in-out;
+      z-index: -1;
   }
+
+
 
   @keyframes zoomInOut {
     from { transform: scale(1.1); }

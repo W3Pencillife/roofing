@@ -26,5 +26,10 @@ class ViewServiceProvider extends ServiceProvider
 
         // Share logo variable with all views
         View::share('siteLogo', $setting ? $setting->logo : 'images/default-logo.png');
+        
+        //Share variables with all views
+        View::share('heroBg', $setting ? $setting->hero_bg : 'images/default-hero.jpeg');
+        View::share('heroTitle', $setting ? $setting->hero_title : 'Default Hero Title');
+        View::share('heroText', $setting ? $setting->hero_text : 'Default hero description');
     }
 }
