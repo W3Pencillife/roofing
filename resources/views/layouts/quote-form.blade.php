@@ -1,24 +1,23 @@
 <div class="container-fluid elegant-form">
   <div class="row g-0">
-    <!-- Left Column - Content -->
+       <!-- Left Column - Content -->
     <div class="col-md-6 form-content">
       <div class="content-inner">
-        <h2>Request Your Roofing Consultation</h2>
-        <p class="lead">Complete this form and our roofing specialists will contact you within 24 hours</p>
-        
+       <h2>{{ $quote?->title ?? 'Default Title' }}</h2>
+        <p class="lead">{{ $quote?->subtitle ?? 'Default subtitle' }}</p>
         <div class="benefits">
-          <div class="benefit-item">
-            <i class="bi bi-check-circle"></i>
-            <span>Free, no-obligation quote</span>
-          </div>
-          <div class="benefit-item">
-            <i class="bi bi-check-circle"></i>
-            <span>Local certified professionals</span>
-          </div>
-          <div class="benefit-item">
-            <i class="bi bi-check-circle"></i>
-            <span>5-star rated service</span>
-          </div>
+            <div class="benefit-item">
+                <i class="bi bi-check-circle"></i>
+                <span>{{ $quote?->benefit_1 ?? 'Benefit 1' }}</span>
+            </div>
+            <div class="benefit-item">
+                <i class="bi bi-check-circle"></i>
+                <span>{{ $quote?->benefit_2 ?? 'Benefit 2' }}</span>
+            </div>
+            <div class="benefit-item">
+                <i class="bi bi-check-circle"></i>
+                <span>{{ $quote?->benefit_3 ?? 'Benefit 3' }}</span>
+            </div>
         </div>
       </div>
     </div>
