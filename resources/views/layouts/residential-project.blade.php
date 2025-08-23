@@ -4,30 +4,16 @@
       <!-- Left Column - Text Content -->
       <div class="col-lg-6 order-lg-1 order-2">
         <div class="project-content">
-          <h2 class="project-title">Residential Projects</h2>
-          <p class="project-description">We specialize in transforming homes with premium roofing solutions that combine durability, aesthetics, and weather protection.</p>
+          <h2 class="project-title">{{ $residentialProject->title }}</h2>
+          <p class="project-description">{{ $residentialProject->description }}</p>
           
           <ul class="project-features">
-            <li>
-              <span class="feature-icon">✓</span>
-              <span>Custom-designed roofing solutions</span>
-            </li>
-            <li>
-              <span class="feature-icon">✓</span>
-              <span>High-quality materials with 25-year warranty</span>
-            </li>
-            <li>
-              <span class="feature-icon">✓</span>
-              <span>Energy-efficient options available</span>
-            </li>
-            <li>
-              <span class="feature-icon">✓</span>
-              <span>Storm-resistant installations</span>
-            </li>
-            <li>
-              <span class="feature-icon">✓</span>
-              <span>5-star rated craftsmanship</span>
-            </li>
+            @foreach(json_decode($residentialProject->features) as $feature)
+              <li>
+                <span class="feature-icon">✓</span>
+                <span>{{ $feature }}</span>
+              </li>
+            @endforeach
           </ul>
         </div>
       </div>
@@ -35,7 +21,7 @@
       <!-- Right Column - Animated Image -->
       <div class="col-lg-6 order-lg-2 order-1">
         <div class="project-image">
-          <img src="{{ asset('images/residential-project.png') }}" alt="Residential Roofing Project" class="img-fluid">
+          <img src="{{ asset($residentialProject->image) }}" alt="{{ $residentialProject->title }}" class="img-fluid">
         </div>
       </div>
     </div>
