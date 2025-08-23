@@ -5,27 +5,22 @@
       <h2 class="section-title">Our <span style="color: #3498db;">Partners</span></h2>
       <div class="divider"></div>
       <p class="section-description">
-        Adipiscing elit, sed do eiusmod tempor incisunt ut labore et dolore magna ligua.above et dolore incididunt ut labore et dolore magna ligua.above et dolore
+        Adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </p>
     </div>
     
     <div class="partners-container">
       <div class="partner-row">
-        <a href="#" target="_blank" class="partner-item">
-          <img src="{{ asset('images/partner1.png') }}" alt="Partner 1" class="partner-logo">
-        </a>
-        <a href="#" target="_blank" class="partner-item">
-          <img src="{{ asset('images/partner2.png') }}" alt="Partner 2" class="partner-logo">
-        </a>
-        <a href="#" target="_blank" class="partner-item">
-          <img src="{{ asset('images/partner3.jpg') }}" alt="Partner 3" class="partner-logo">
-        </a>
-        <a href="#" target="_blank" class="partner-item">
-          <img src="{{ asset('images/partner1.png') }}" alt="Partner 4" class="partner-logo">
-        </a>
-        <a href="#" target="_blank" class="partner-item">
-          <img src="{{ asset('images/partner2.png') }}" alt="Partner 5" class="partner-logo">
-        </a>
+        @php
+          // Directly fetch partners here
+          $partners = \App\Models\Partner::all();
+        @endphp
+
+        @foreach($partners as $partner)
+          <a href="{{ $partner->link ?? '#' }}" target="_blank" class="partner-item">
+            <img src="{{ asset('images/' . $partner->image) }}" alt="{{ $partner->name }}" class="partner-logo">
+          </a>
+        @endforeach
       </div>
     </div>
   </div>
