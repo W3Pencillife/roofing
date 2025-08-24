@@ -51,7 +51,8 @@ Route::get('admin/password/reset/{token}', [AdminResetPasswordController::class,
 Route::post('admin/password/reset', [AdminResetPasswordController::class, 'reset'])
     ->name('admin.password.update');
 
-
+// Add log out route
+Route::post('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
 
 

@@ -51,4 +51,14 @@ class AdminController extends Controller
         return redirect()->route('admin.login')
                          ->with('success', 'Account created successfully! Please log in.');
     }
+
+    // In your AdminController.php
+    public function logout(Request $request)
+    {
+        Auth::guard('admin')->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        
+        return redirect()->route('admin.login');
+    }
 }
