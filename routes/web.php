@@ -49,14 +49,46 @@ Route::post('admin/password/reset', [AdminResetPasswordController::class, 'reset
 // Add log out route
 Route::post('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
-// Admin Dashboard (protected)
-Route::get('admin/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware('auth:admin')->name('admin.dashboard');
-
-Route::get('admin/general', function () {
+// Admin routes
+Route::prefix('admin')->middleware('auth:admin')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+    
+    Route::get('/general', function () {
         return view('admin.general');
-})->name('admin.general');
+    })->name('admin.general');
+
+    Route::prefix('admin/posts')->name('admin.posts.')->group(function () {
+        Route::get('/', [PostController::class, 'index'])->name('index');
+        Route::get('/create', [PostController::class, 'create'])->name('create');
+        Route::get('/categories', [PostController::class, 'categories'])->name('categories');
+    });
+        
+    Route::get('/form-submissions', function () {
+        return view('admin.form-submissions');
+    })->name('admin.form-submissions');
+    
+Route::prefix('admin/projects')->name('admin.projects.')->group(function () {
+    Route::get('/', [ProjectController::class, 'index'])->name('index'); 
+    Route::get('/residential', [ProjectController::class, 'residential'])->name('residential');
+    Route::get('/commercial', [ProjectController::class, 'commercial'])->name('commercial');
+});
+
+    
+    Route::get('/features', function () {
+        return view('admin.features');
+    })->name('admin.features');
+    
+    Route::get('/partners', function () {
+        return view('admin.partners');
+    })->name('admin.partners');
+    
+    Route::get('/site-settings', function () {
+        return view('admin.site-settings');
+    })->name('admin.site-settings');
+    
+});
 
 
 

@@ -207,7 +207,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link" id="posts-menu">
+                <a href="{{ route('admin.posts.index') }}"  class="nav-link" id="posts-menu">
                     <div>
                         <i class="fas fa-newspaper"></i>
                         <span>Posts</span>
@@ -215,22 +215,22 @@
                     <i class="fas fa-chevron-right menu-arrow"></i>
                 </a>
                 <div class="submenu" id="posts-submenu">
-                    <a href="#" class="submenu-link">
+                    <a href="{{ route('admin.posts.index') }}" class="submenu-link">
                         <i class="fas fa-bars"></i>
                         All Posts
                     </a>
-                    <a href="#" class="submenu-link">
+                    <a href="{{ route('admin.posts.create') }}"  class="submenu-link">
                         <i class="fas fa-plus"></i>
                         Add New
                     </a>
-                    <a href="#" class="submenu-link">
+                    <a href="{{ route('admin.posts.categories') }}"  class="submenu-link">
                         <i class="fas fa-tags"></i>
                         Categories
                     </a>
                 </div>
             </li>
             <li>
-                <a href="#" class="nav-link">
+                <a href="{{ route('admin.form-submissions') }}" class="nav-link">
                     <div>
                         <i class="fas fa-file-alt"></i>
                         <span>Form Submissions</span>
@@ -238,7 +238,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link" id="projects-menu">
+                <a href="{{ route('admin.projects.index') }}" class="nav-link" id="projects-menu">
                     <div>
                         <i class="fas fa-building"></i>
                         <span>Projects</span>
@@ -246,18 +246,18 @@
                     <i class="fas fa-chevron-right menu-arrow"></i>
                 </a>
                 <div class="submenu" id="projects-submenu">
-                    <a href="#" class="submenu-link">
+                    <a href="{{ route('admin.projects.residential') }}" class="submenu-link">
                         <i class="fas fa-home"></i>
                         Residential Projects
                     </a>
-                    <a href="#" class="submenu-link">
+                    <a href="{{ route('admin.projects.commercial') }}" class="submenu-link">
                         <i class="fas fa-city"></i>
                         Commercial Projects
                     </a>
                 </div>
             </li>
             <li>
-                <a href="#" class="nav-link">
+                <a href="{{ route('admin.features') }}" class="nav-link">
                     <div>
                         <i class="fas fa-star"></i>
                         <span>Features</span>
@@ -265,7 +265,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link">
+                <a href="{{ route('admin.partners') }}" class="nav-link">
                     <div>
                         <i class="fas fa-handshake"></i>
                         <span>Partners</span>
@@ -273,7 +273,7 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link">
+                <a href="{{ route('admin.site-settings') }}" class="nav-link">
                     <div>
                         <i class="fas fa-sliders-h"></i>
                         <span>Site Settings</span>
