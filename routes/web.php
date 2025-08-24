@@ -32,11 +32,6 @@ Route::post('admin/login', [AdminController::class, 'loginSubmit'])->name('admin
 Route::get('admin/register', [AdminController::class, 'register'])->name('admin.register');
 Route::post('admin/register', [AdminController::class, 'registerSubmit'])->name('admin.register.submit');
 
-// Admin Dashboard (protected)
-Route::get('admin/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware('auth:admin')->name('admin.dashboard');
-
 // Forgot Password Form
 Route::get('admin/password/reset', [AdminForgotPasswordController::class, 'showLinkRequestForm'])
     ->name('admin.password.request');
@@ -53,6 +48,15 @@ Route::post('admin/password/reset', [AdminResetPasswordController::class, 'reset
 
 // Add log out route
 Route::post('admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
+
+// Admin Dashboard (protected)
+Route::get('admin/dashboard', function () {
+    return view('admin.dashboard');
+})->middleware('auth:admin')->name('admin.dashboard');
+
+Route::get('admin/general', function () {
+        return view('admin.general');
+})->name('admin.general');
 
 
 
