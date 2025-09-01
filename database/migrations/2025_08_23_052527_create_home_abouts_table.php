@@ -10,8 +10,8 @@ return new class extends Migration
     {
         Schema::create('home_abouts', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->text('description')->nullable();
+            $table->string('title');
+            $table->text('description');
             $table->string('feature_1')->nullable();
             $table->string('feature_2')->nullable();
             $table->string('feature_3')->nullable();

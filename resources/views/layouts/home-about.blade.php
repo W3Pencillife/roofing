@@ -1,8 +1,4 @@
 <!-- ==================== About Section ==================== -->
-@php
-    // Fetch the latest record from home_abouts table
-    $homeAbout = \App\Models\HomeAbout::latest()->first();
-@endphp
 
 <section class="compact-about">
     <div class="about-bg-blur"></div>
@@ -175,13 +171,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const title = entry.target.querySelector('.about-title');
         if (title) title.classList.add('animate-slide-up');
 
-        // Animate description
+        // Animate description word by word
         const desc = entry.target.querySelector('#about-text');
         if (desc && !desc.dataset.animated) {
           const text = desc.innerText.trim();
-          desc.innerHTML = text.split(" ").map(word => `<span>${word}&nbsp;</span>`).join("");
-          desc.querySelectorAll("span").forEach((span, i) => {
-            setTimeout(() => span.classList.add("visible"), i * 120);
+          desc.innerHTML = text.split(" ").map(word => `<span class="word">${word}&nbsp;</span>`).join("");
+          desc.querySelectorAll(".word").forEach(span => {
+            span.classList.add("visible");
           });
           desc.dataset.animated = "true";
         }
@@ -192,6 +188,7 @@ document.addEventListener('DOMContentLoaded', function () {
   observer.observe(document.querySelector('.compact-about'));
 });
 </script>
+
 
 <!-- Bootstrap Icons -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">

@@ -37,5 +37,14 @@ class AppServiceProvider extends ServiceProvider
             $siteSetting = SiteSetting::first(); // fetch the first settings row
             $view->with('siteSetting', $siteSetting);
         });
+
+            View::composer('layouts.home-about', function ($view) {
+        $view->with('homeAbout', \App\Models\HomeAbout::latest()->first());
+    });
+    
+    // Also for home view if needed
+    View::composer('home', function ($view) {
+        $view->with('homeAbout', \App\Models\HomeAbout::latest()->first());
+    });
     }
 }

@@ -7,6 +7,9 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminForgotPasswordController;
 use App\Http\Controllers\Admin\AdminResetPasswordController;
+use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\HomeAboutController;
+
 
 
 Route::get('/', function () {
@@ -59,6 +62,9 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         return view('admin.general');
     })->name('admin.general');
 
+    Route::post('/general/about/update', [HomeAboutController::class, 'update'])->name('admin.general.about.update');
+
+    
     Route::prefix('admin/posts')->name('admin.posts.')->group(function () {
         Route::get('/', [PostController::class, 'index'])->name('index');
         Route::get('/create', [PostController::class, 'create'])->name('create');
@@ -69,11 +75,11 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         return view('admin.form-submissions');
     })->name('admin.form-submissions');
     
-Route::prefix('admin/projects')->name('admin.projects.')->group(function () {
-    Route::get('/', [ProjectController::class, 'index'])->name('index'); 
-    Route::get('/residential', [ProjectController::class, 'residential'])->name('residential');
-    Route::get('/commercial', [ProjectController::class, 'commercial'])->name('commercial');
-});
+    Route::prefix('admin/projects')->name('admin.projects.')->group(function () {
+        Route::get('/', [ProjectController::class, 'index'])->name('index'); 
+        Route::get('/residential', [ProjectController::class, 'residential'])->name('residential');
+        Route::get('/commercial', [ProjectController::class, 'commercial'])->name('commercial');
+    });
 
     
     Route::get('/features', function () {
@@ -88,7 +94,11 @@ Route::prefix('admin/projects')->name('admin.projects.')->group(function () {
         return view('admin.site-settings');
     })->name('admin.site-settings');
     
+    
 });
+
+
+
 
 
 
